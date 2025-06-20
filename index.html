@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>LogicTech ReSale | Premium Pre-Owned & New Computers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2563eb',
+                        secondary: '#1e40af',
+                        accent: '#f97316',
+                        dark: '#1f2937'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1593642634524-b40b5baae6bb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+        }
+        
+        .category-card {
+            transition: all 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+        }
+        
+        .testimonial-card {
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+        
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        
+        .stats-item {
+            transition: all 0.3s ease;
+        }
+        
+        .stats-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .product-card {
+                width: 100%;
+                margin-bottom: 1.5rem;
+            }
+            
+            .cart-dropdown {
+                width: 90vw;
+                right: 5vw;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Top Bar -->
+    <div class="bg-dark text-white py-2 px-4">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="flex space-x-6">
+                <div class="flex items-center space-x-1">
+                    <i class="fas fa-phone text-accent"></i>
+                    <span>+233 (24-373-5752)</span>
+                </div>
+                <div class="flex items-center space-x-1">
+                    <i class="fas fa-envelope text-accent"></i>
+                    <span>support@logictech.com</span>
+                </div>
+            </div>
+            <div>
+                <a href="#" class="hover:text-accent transition">Free Shipping on Orders Over ₵500</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <i class="fas fa-laptop-code text-primary text-3xl"></i>
+                    <a href="#" class="ml-2 text-2xl font-bold text-dark">LogicTech<span class="text-primary">Resale</span></a>
+                </div>
+                
+                <div class="hidden md:flex space-x-10">
+                    <a href="#" class="font-medium hover:text-primary transition">Home</a>
+                    <a href="#shop" class="font-medium hover:text-primary transition">Shop</a>
+                    <a href="#categories" class="font-medium hover:text-primary transition">Categories</a>
+                    <a href="#why-us" class="font-medium hover:text-primary transition">Why Us</a>
+                    <a href="#testimonials" class="font-medium hover:text-primary transition">Reviews</a>
+                </div>
+                
+                <div class="flex items-center space-x-6">
+                    <div class="relative">
+                        <i class="fas fa-search text-gray-600 hover:text-primary cursor-pointer"></i>
+                    </div>
+                    <div class="relative">
+                        <i class="fas fa-user text-gray-600 hover:text-primary cursor-pointer"></i>
+                    </div>
+                    <div class="relative cart-icon-container">
+                        <i class="fas fa-shopping-cart text-gray-600 hover:text-primary cursor-pointer"></i>
+                        <span class="cart-badge bg-accent text-white rounded-full flex items-center justify-center">3</span>
+                    </div>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-primary focus:outline-none" title="Open Mobile Menu">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white py-4 px-4 shadow-lg">
+        <div class="flex flex-col space-y-4">
+            <a href="#" class="font-medium hover:text-primary transition py-2 border-b">Home</a>
+            <a href="#shop" class="font-medium hover:text-primary transition py-2 border-b">Shop</a>
+            <a href="#categories" class="font-medium hover:text-primary transition py-2 border-b">Categories</a>
+            <a href="#why-us" class="font-medium hover:text-primary transition py-2 border-b">Why Us</a>
+            <a href="#testimonials" class="font-medium hover:text-primary transition py-2">Reviews</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-bg py-24 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Premium Used & New Computers</h1>
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-10">Get amazing deals on certified pre-owned and brand new laptops, desktops, components and accessories. All products come with 1-year warranty!</p>
+            <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 justify-center">
+                <a href="#shop" class="bg-primary hover:bg-secondary px-8 py-4 rounded-lg font-bold text-lg transition shadow-lg">Shop Now</a>
+                <a href="#why-us" class="bg-white text-dark hover:bg-gray-100 px-8 py-4 rounded-lg font-bold text-lg transition shadow-lg">Why Choose Us?</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section id="shop" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap gap-2 mb-8">
+                <button class="filter-btn bg-primary text-white px-4 py-2 rounded" data-filter="all">All</button>
+                <button class="filter-btn bg-gray-200 px-4 py-2 rounded" data-filter="laptop">Laptops</button>
+                <button class="filter-btn bg-gray-200 px-4 py-2 rounded" data-filter="desktop">Desktops</button>
+                <button class="filter-btn bg-gray-200 px-4 py-2 rounded" data-filter="monitor">Monitors</button>
+                <button class="filter-btn bg-gray-200 px-4 py-2 rounded" data-filter="accessory">Accessories</button>
+                <button class="filter-btn bg-gray-200 px-4 py-2 rounded" data-filter="component">Components</button>
+            </div>
+
+            <!-- Price Filter -->
+            <div class="mb-8">
+                <label for="price-filter" class="block text-sm font-medium text-gray-700 mb-2">Filter by Price</label>
+                <select id="price-filter" class="w-full p-2 border rounded">
+                    <option value="0-500">₵0 - ₵500</option>
+                    <option value="500-1000">₵500 - ₵1000</option>
+                    <option value="1000-5000">₵1000 - ₵5000</option>
+                    <option value="5000-">₵5000+</option>
+                </select>
+            </div>
+
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Featured Products</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Our most popular new and refurbished items</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg" data-category="laptop" data-stock="5" data-id="prod_001">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="MacBook Pro" class="w-full h-48 object-cover">
+                        <!-- Badges -->
+                        <div class="absolute top-2 left-2 flex gap-2">
+                            <span class="bg-green-500 text-white text-xs px-2 py-1 rounded">BEST SELLER</span>
+                            <span class="bg-red-500 text-white text-xs px-2 py-1 rounded">LAST 2 LEFT</span>
+                        </div>
+                        <div class="discount-badge bg-accent text-white px-3 py-1 rounded-full text-sm font-bold">-30%</div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold text-lg">MacBook Pro M1</h3>
+                                <p class="text-gray-600 text-sm">Refurbished - Like New</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-gray-400 line-through">₵5500</p>
+                                <p class="text-primary font-bold">₵4500</p>
+                            </div>
+                        </div>
+                        <button class="view-details-btn bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full" 
+                                data-product='{"name":"MacBook Pro M1","price":"₵4500","desc":"Refurbished - Like New","image":"https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}'>
+                            View Details
+                        </button>
+                        <button class="add-to-cart-btn bg-primary hover:bg-secondary text-white py-2 px-4 rounded-lg mt-2 w-full">
+                            Add to Cart
+                        </button>
+                        <!-- Stock Indicator -->
+                        <div class="stock-indicator mt-2">
+                            <div class="text-xs text-gray-500">
+                                <span class="stock-count">5</span> left in stock
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                                <div 
+                                  class="stock-bar h-1.5 rounded-full"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg" data-category="desktop" data-stock="3" data-id="prod_002">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Gaming PC" class="w-full h-48 object-cover">
+                        <!-- Badges -->
+                        <div class="absolute top-2 left-2 flex gap-2">
+                            <span class="bg-green-500 text-white text-xs px-2 py-1 rounded">NEW</span>
+                        </div>
+                        <div class="discount-badge bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">New</div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold text-lg">Gaming Desktop</h3>
+                                <p class="text-gray-600 text-sm">Brand New</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-primary font-bold">₵10,000</p>
+                            </div>
+                        </div>
+                        <button class="view-details-btn bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full" 
+                                data-product='{"name":"Gaming Desktop","price":"₵10,000","desc":"Brand New","image":"https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}'>
+                            View Details
+                        </button>
+                        <button class="add-to-cart-btn bg-primary hover:bg-secondary text-white py-2 px-4 rounded-lg mt-2 w-full">
+                            Add to Cart
+                        </button>
+                        <!-- Stock Indicator -->
+                        <div class="stock-indicator mt-2">
+                            <div class="text-xs text-gray-500">
+                                <span class="stock-count">3</span> left in stock
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                                <div 
+                                  class="stock-bar h-1.5 rounded-full stock-bar-width-60"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg" data-category="accessory" data-stock="10" data-id="prod_003">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wireless Mouse" class="w-full h-48 object-cover">
+                        <!-- Badges -->
+                        <div class="absolute top-2 left-2 flex gap-2">
+                            <span class="bg-green-500 text-white text-xs px-2 py-1 rounded">POPULAR</span>
+                        </div>
+                        <div class="discount-badge bg-accent text-white px-3 py-1 rounded-full text-sm font-bold">-10%</div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold text-lg">Wireless Mouse</h3>
+                                <p class="text-gray-600 text-sm">Ergonomic design</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-gray-400 line-through">₵200</p>
+                                <p class="text-primary font-bold">₵150</p>
+                            </div>
+                        </div>
+                        <button class="view-details-btn bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full" 
+                                data-product='{"name":"Wireless Mouse","price":"₵150","desc":"Ergonomic design","image":"https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}'>
+                            View Details
+                        </button>
+                        <button class="add-to-cart-btn bg-primary hover:bg-secondary text-white py-2 px-4 rounded-lg mt-2 w-full">
+                            Add to Cart
+                        </button>
+                        <!-- Stock Indicator -->
+                        <div class="stock-indicator mt-2">
+                            <div class="text-xs text-gray-500">
+                                <span class="stock-count">10</span> left in stock
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                                <div 
+                                  class="stock-bar h-1.5 rounded-full full-width"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg" data-category="monitor" data-stock="10" data-id="prod_003">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Monitor" class="w-full h-48 object-cover">
+                        <div class="discount-badge bg-accent text-white px-3 py-1 rounded-full text-sm font-bold">-25%</div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold text-lg">27" 4K Monitor</h3>
+                                <p class="text-gray-600 text-sm">Refurbished - Excellent</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-gray-400 line-through">₵3000</p>
+                                <p class="text-primary font-bold">₵2500</p>
+                            </div>
+                        </div>
+                        <button class="view-details-btn bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full" 
+                                data-product='{"name":"27\" 4K Monitor","price":"₵2500","desc":"Refurbished - Excellent","image":"https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}'>
+                            View Details
+                        </button>
+                        <button class="add-to-cart-btn bg-primary hover:bg-secondary text-white py-2 px-4 rounded-lg mt-2 w-full">
+                            Add to Cart
+                        </button>
+                        <!-- Stock Indicator -->
+                        <div class="stock-indicator mt-2">
+                            <div class="text-xs text-gray-500">
+                                <span class="stock-count">10</span> left in stock
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                                <div 
+                                  class="stock-bar h-1.5 rounded-full stock-bar-width"
+                                ></div>
+                            </div>
+                    </div>
+                </div>
+                
+                <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg" data-category="accessory" data-stock="8" data-id="prod_004">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Keyboard" class="w-full h-48 object-cover">
+                        <div class="discount-badge bg-green-500 text-white px-3 py-1 rounded-full text-sm font-bold">New</div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-bold text-lg">Mechanical Keyboard</h3>
+                                <p class="text-gray-600 text-sm">Brand New</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-gray-400 line-through">₵300</p>
+                                <p class="text-primary font-bold">₵200</p>
+                            </div>
+                        </div>
+                        <button class="view-details-btn bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full" 
+                                data-product='{"name":"Mechanical Keyboard","price":"₵200","desc":"Brand New","image":"https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"}'>
+                            View Details
+                        </button>
+                        <button class="add-to-cart-btn bg-primary hover:bg-secondary text-white py-2 px-4 rounded-lg mt-2 w-full">
+                            Add to Cart
+                        </button>
+                        <!-- Stock Indicator -->
+                        <div class="stock-indicator mt-2">  
+                            <div class="text-xs text-gray-500">
+                                <span class="stock-count">8</span> left in stock
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                                <div 
+                                  class="stock-bar h-1.5 rounded-full stock-bar-width"
+                                ></div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-white hover:bg-gray-100 text-dark px-8 py-3 rounded-lg font-bold text-lg transition shadow-lg border border-gray-200">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-10 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="stats-item bg-white p-6 rounded-lg shadow">
+                    <div class="text-primary text-4xl font-bold">98%</div>
+                    <div class="text-gray-600 font-medium">Positive Feedback</div>
+                </div>
+                <div class="stats-item bg-white p-6 rounded-lg shadow">
+                    <div class="text-primary text-4xl font-bold">10k+</div>
+                    <div class="text-gray-600 font-medium">Items Sold</div>
+                </div>
+                <div class="stats-item bg-white p-6 rounded-lg shadow">
+                    <div class="text-primary text-4xl font-bold">24/7</div>
+                    <div class="text-gray-600 font-medium">Customer Support</div>
+                </div>
+                <div class="stats-item bg-white p-6 rounded-lg shadow">
+                    <div class="text-primary text-4xl font-bold">1 Year</div>
+                    <div class="text-gray-600 font-medium">Warranty</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">Shop by Category</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Find exactly what you're looking for from our curated categories</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="category-card bg-gray-50 rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Laptops" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white font-bold text-xl">Laptops</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Business, gaming, and everyday laptops</p>
+                        <a href="#" class="text-primary font-medium hover:underline">Shop Now →</a>
+                    </div>
+                </div>
+                
+                <div class="category-card bg-gray-50 rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Desktops" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white font-bold text-xl">Desktops</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Powerful workstations and gaming PCs</p>
+                        <a href="#" class="text-primary font-medium hover:underline">Shop Now →</a>
+                    </div>
+                </div>
+                
+                <div class="category-card bg-gray-50 rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1592155931584-901ac15763e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Components" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white font-bold text-xl">Components</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">GPUs, CPUs, RAM and more</p>
+                        <a href="#" class="text-primary font-medium hover:underline">Shop Now →</a>
+                    </div>
+                </div>
+                
+                <div class="category-card bg-gray-50 rounded-xl overflow-hidden shadow-lg">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Accessories" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white font-bold text-xl">Accessories</div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-4">Monitors, keyboards, mice and more</p>
+                        <a href="#" class="text-primary font-medium hover:underline">Shop Now →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faqs" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto">
+                <!-- FAQ Item -->
+                <div class="mb-6">
+                    <button class="faq-question w-full text-left font-medium py-3 px-4 bg-white rounded-lg shadow">
+                        Do you offer international shipping?
+                    </button>
+                    <div class="faq-answer mt-2 px-4 hidden">
+                        <p class="text-gray-600">Currently, we only ship within Ghana.</p>
+                    </div>
+                </div>
+                <!-- Add more FAQs similarly -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Shipping & Returns Section -->
+    <section id="shipping" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-8">Shipping & Returns</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <i class="fas fa-truck text-3xl text-primary mb-4"></i>
+                    <h3 class="font-bold mb-2">Fast Delivery</h3>
+                    <p class="text-gray-600">1-3 business days in Accra, 3-5 days nationwide.</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <i class="fas fa-undo text-3xl text-primary mb-4"></i>
+                    <h3 class="font-bold mb-2">Easy Returns</h3>
+                    <p class="text-gray-600">14-day return policy for unused items.</p>
+                </div>
+                <div class="text-center p-6 bg-gray-50 rounded-lg">
+                    <i class="fas fa-shield-alt text-3xl text-primary mb-4"></i>
+                    <h3 class="font-bold mb-2">Warranty</h3>
+                    <p class="text-gray-600">1-year warranty on all products.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="modal-root"></div>
+
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+           <!-- Trust Badges -->
+         <div class="flex flex-wrap justify-center gap-4 mb-6">
+            <div class="trust-badge">
+                <i class="fas fa-shield-alt text-green-500 text-2xl"></i>
+                <span>Secure Checkout</span>
+            </div>
+            <div class="trust-badge">
+                <i className="fas fa-lock text-green-500 text-2xl"></i>
+                <span>SSL Encryption</span>
+            </div>
+            <div class="trust-badge">
+                <i className="fas fa-medal text-green-500 text-2xl"></i>
+                <span>1-Year Warranty</span>
+            </div>
+        </div>
+            <p class="text-gray-400">© 2023 LogicTech ReSale. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" src="scripts/cart.js"></script>
+    <script src="scripts/inventory.js"></script>
+    <script src="scripts/filters.js"></script>
+
+</body>
+</html>
