@@ -1,0 +1,95 @@
+:root {
+  /* Type */
+  --font-sans: var(--ff-sans), "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: var(--ff-serif), "Instrument Serif", Georgia, serif;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 180ms;
+  --dur: 380ms;
+  --dur-slow: 900ms;
+
+  /* Layout */
+  --container: 1360px;
+  --gutter: clamp(20px, 3vw, 40px);
+  --header-h: 76px;
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 20px;
+
+  /* Light theme */
+  color-scheme: light;
+  --bg: #ffffff;
+  --bg-soft: #f7f7f4;
+  --bg-muted: #eef0ec;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --ink: #15181a;
+  --ink-2: #3b4143;
+  --muted: #717876;
+  --line: #e6e7e3;
+  --line-strong: #d3d7d2;
+  --accent: #7c9e8f;
+  --accent-strong: #557a69;
+  --accent-soft: #e4ede7;
+  --btn-dark-bg: #15191a;
+  --btn-dark-ink: #ffffff;
+  --btn-dark-hover: #2c3436;
+  --inverse-bg: #15191a;
+  --inverse-ink: #f3f5f2;
+  --inverse-muted: #96a19c;
+  --inverse-line: #2b3233;
+  --hero-bg: #171b1d;
+  --hero-ink: #ffffff;
+  --hero-muted: #aeb8b5;
+  --hero-accent: #b5d1bf;
+  --media-bg: #f2f3f0;
+  --media-blend: multiply;
+  --scrim: rgba(12, 15, 16, 0.42);
+  --danger: #b03a3a;
+  --danger-soft: #fbeeee;
+  --success: #2f7a57;
+  --warning: #a8701c;
+  --focus: #557a69;
+  --shadow-sm: 0 1px 2px rgba(16, 20, 21, 0.06), 0 2px 8px rgba(16, 20, 21, 0.04);
+  --shadow-lg: 0 24px 60px -24px rgba(16, 20, 21, 0.28), 0 8px 24px -12px rgba(16, 20, 21, 0.12);
+  --header-bg: rgba(255, 255, 255, 0.82);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0e1112;
+  --bg-soft: #131718;
+  --bg-muted: #191e1f;
+  --surface: #151a1b;
+  --surface-raised: #1b2122;
+  --ink: #eef1ee;
+  --ink-2: #c7cecb;
+  --muted: #8e9894;
+  --line: #242a2b;
+  --line-strong: #323a3b;
+  --accent: #9cbfae;
+  --accent-strong: #b5d1bf;
+  --accent-soft: #1e2a25;
+  --btn-dark-bg: #eef1ee;
+  --btn-dark-ink: #111415;
+  --btn-dark-hover: #cfd8d3;
+  --inverse-bg: #080a0b;
+  --inverse-ink: #eef1ee;
+  --inverse-muted: #85908b;
+  --inverse-line: #1f2526;
+  --hero-bg: #0a0c0d;
+  // Product photos usually sit on white, so tiles stay light and blend.
+  --media-bg: #e6e8e4;
+  --media-blend: multiply;
+  --scrim: rgba(0, 0, 0, 0.6);
+  --danger: #e07a7a;
+  --danger-soft: #2a1717;
+  --success: #6fc49b;
+  --warning: #e0b061;
+  --focus: #b5d1bf;
+  --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
+  --header-bg: rgba(14, 17, 18, 0.78);
+}

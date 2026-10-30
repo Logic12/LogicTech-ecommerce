@@ -1,0 +1,122 @@
+@use "mixins" as *;
+
+.footer {
+  background: var(--inverse-bg);
+  color: var(--inverse-ink);
+  overflow: hidden;
+
+  &__top {
+    max-width: var(--container);
+    margin-inline: auto;
+    padding: clamp(60px, 8vw, 96px) var(--gutter) 48px;
+    display: grid;
+    grid-template-columns: 1.7fr repeat(4, minmax(0, 1fr));
+    gap: 40px;
+
+    @include down(lg) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @include down(sm) {
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 20px;
+
+      .footer__contact {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+
+  &__brand {
+    display: grid;
+    align-content: start;
+    gap: 14px;
+
+    @include down(lg) {
+      grid-column: 1 / -1;
+    }
+
+    p {
+      color: var(--inverse-muted);
+      font-size: 15px;
+
+      em {
+        color: var(--inverse-ink);
+        font-size: 1.15em;
+      }
+    }
+  }
+
+  &__col {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    font-size: 14px;
+
+    h2 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--inverse-muted);
+      margin-bottom: 6px;
+    }
+
+    a,
+    p {
+      color: color-mix(in srgb, var(--inverse-ink) 82%, transparent);
+      line-height: 1.7;
+      width: fit-content;
+      transition: color var(--dur-fast), transform var(--dur) var(--ease-out);
+    }
+
+    a {
+      @include hover {
+        color: var(--hero-accent);
+        transform: translateX(3px);
+      }
+    }
+  }
+
+  &__bottom {
+    max-width: var(--container);
+    margin-inline: auto;
+    padding: 24px var(--gutter);
+    border-top: 1px solid var(--inverse-line);
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    color: var(--inverse-muted);
+    font-size: 12px;
+  }
+
+  &__secure {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__wordmark {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.12em;
+    padding-inline: var(--gutter);
+    font-size: clamp(44px, 10.2vw, 168px);
+    font-weight: 800;
+    letter-spacing: -0.065em;
+    line-height: 0.8;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--inverse-line);
+    user-select: none;
+    margin-bottom: -0.08em;
+    white-space: nowrap;
+
+    em {
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      font-size: 1.12em;
+    }
+  }
+}

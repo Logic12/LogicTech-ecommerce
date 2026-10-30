@@ -1,0 +1,41 @@
+@use "sass:map";
+
+$breakpoints: (
+  sm: 600px,
+  md: 900px,
+  lg: 1100px,
+);
+
+/// Styles for viewports narrower than the named breakpoint.
+@mixin down($bp) {
+  @media (max-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+/// Styles for viewports wider than the named breakpoint.
+@mixin up($bp) {
+  @media (min-width: map.get($breakpoints, $bp) + 1px) {
+    @content;
+  }
+}
+
+/// Hover effects only on devices that can actually hover.
+@mixin hover {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+@mixin focus-ring($offset: 3px) {
+  outline: 2px solid var(--focus);
+  outline-offset: $offset;
+}

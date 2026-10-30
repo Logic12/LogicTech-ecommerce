@@ -1,0 +1,122 @@
+@use "mixins" as *;
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+.display {
+  font-size: clamp(38px, 4.4vw, 66px);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+  margin-top: 16px;
+  text-wrap: balance;
+
+  &--sm {
+    font-size: clamp(30px, 3.2vw, 46px);
+  }
+}
+
+em,
+.display em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.accent {
+  color: var(--accent);
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  position: relative;
+  padding-block: 6px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--dur) var(--ease-out);
+  }
+
+  svg {
+    transition: transform var(--dur) var(--ease-out);
+  }
+
+  @include hover {
+    &::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    svg {
+      transform: translate(3px, -1px);
+    }
+  }
+
+  &--light {
+    color: var(--hero-ink);
+  }
+}
+
+.text-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  transition: color var(--dur-fast);
+
+  @include hover {
+    color: var(--ink);
+  }
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: var(--shadow-sm);
+
+  &--accent {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    box-shadow: none;
+  }
+}
+
+.chip {
+  display: inline-flex;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  font-size: 11px;
+  font-weight: 600;
+
+  &--dark {
+    background: var(--btn-dark-bg);
+    color: var(--btn-dark-ink);
+    border-color: transparent;
+  }
+}

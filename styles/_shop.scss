@@ -1,0 +1,189 @@
+@use "mixins" as *;
+
+.toolbar {
+  position: sticky;
+  top: 62px;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 0 calc(var(--gutter) * -1) clamp(28px, 3vw, 40px);
+  padding: 14px var(--gutter);
+  background: var(--header-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
+
+  &__pills {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 2px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    a {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 4px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-2);
+      transition: background-color var(--dur), color var(--dur), border-color var(--dur);
+
+      sup {
+        font-size: 9px;
+        font-weight: 600;
+        opacity: 0.6;
+        line-height: 1;
+        margin-top: 2px;
+      }
+
+      @include hover {
+        border-color: var(--line-strong);
+        color: var(--ink);
+      }
+
+      &.is-active {
+        background: var(--btn-dark-bg);
+        border-color: var(--btn-dark-bg);
+        color: var(--btn-dark-ink);
+      }
+    }
+  }
+
+  &__controls {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  &__progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: 0;
+  }
+
+  &.is-pending &__progress {
+    opacity: 1;
+    animation: loading-bar 1.2s var(--ease-in-out) infinite;
+  }
+
+  @include down(md) {
+    flex-direction: column;
+    align-items: stretch;
+
+    &__controls {
+      width: 100%;
+    }
+    .search-field {
+      flex: 1;
+    }
+  }
+}
+
+.search-field,
+.select-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  transition: border-color var(--dur), box-shadow var(--dur);
+
+  &:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+  }
+}
+
+.search-field {
+  width: 260px;
+  min-width: 0;
+  padding: 0 8px 0 16px;
+  gap: 10px;
+
+  > svg {
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  input {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    font-size: 13px;
+    outline: none;
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
+  }
+
+  button {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+
+    @include hover {
+      background: var(--bg-muted);
+      color: var(--ink);
+    }
+  }
+
+  @include down(md) {
+    width: auto;
+  }
+}
+
+.select-field {
+  select {
+    appearance: none;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    padding: 0 40px 0 18px;
+    font-size: 13px;
+    cursor: pointer;
+    outline: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+  }
+
+  option {
+    background: var(--surface);
+    color: var(--ink);
+  }
+}

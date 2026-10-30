@@ -1,0 +1,163 @@
+@use "mixins" as *;
+
+.btn {
+  --btn-bg: var(--btn-dark-bg);
+  --btn-ink: var(--btn-dark-ink);
+  --btn-fill: var(--btn-dark-hover);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  min-height: 52px;
+  padding: 0 24px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: var(--btn-bg);
+  color: var(--btn-ink);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: color var(--dur) var(--ease-out), border-color var(--dur), transform var(--dur-fast);
+
+  // Fill sweep from below on hover.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--btn-fill);
+    border-radius: inherit;
+    transform: translateY(101%);
+    transition: transform 0.55s var(--ease-out);
+  }
+
+  svg {
+    flex-shrink: 0;
+    transition: transform var(--dur) var(--ease-out);
+  }
+
+  @include hover {
+    &:not(:disabled)::before {
+      transform: none;
+    }
+    &:not(:disabled) svg {
+      transform: translateX(3px);
+    }
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+  }
+
+  &--dark {
+    --btn-bg: var(--btn-dark-bg);
+    --btn-ink: var(--btn-dark-ink);
+    --btn-fill: var(--btn-dark-hover);
+  }
+
+  &--light {
+    --btn-bg: #f6f7f3;
+    --btn-ink: #15191a;
+    --btn-fill: var(--hero-accent);
+  }
+
+  &--ghost {
+    --btn-bg: transparent;
+    --btn-ink: var(--ink);
+    --btn-fill: var(--ink);
+    border-color: var(--line-strong);
+
+    @include hover {
+      color: var(--bg);
+    }
+  }
+
+  &--block {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &--grow {
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  &--lg {
+    min-height: 60px;
+    font-size: 14px;
+  }
+
+  &.is-success {
+    --btn-bg: var(--success);
+    --btn-ink: #fff;
+    animation: pop 0.45s var(--ease-spring);
+  }
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  transition: background-color var(--dur-fast);
+
+  @include hover {
+    background: var(--bg-muted);
+  }
+}
+
+.qty {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  height: 52px;
+  padding: 0 6px;
+
+  button {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    transition: background-color var(--dur-fast);
+
+    @include hover {
+      background: var(--bg-muted);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+    }
+  }
+
+  output {
+    min-width: 30px;
+    text-align: center;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &--sm {
+    height: 36px;
+    padding: 0 3px;
+
+    button {
+      width: 28px;
+      height: 28px;
+    }
+    output {
+      min-width: 22px;
+      font-size: 13px;
+    }
+  }
+}

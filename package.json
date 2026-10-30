@@ -1,0 +1,27 @@
+{
+  "name": "logictech-resale",
+  "version": "2.5.0",
+  "private": true,
+  "scripts": {
+    "predev": "node scripts/check-structure.mjs",
+    "dev": "next dev",
+    "prebuild": "node scripts/check-structure.mjs",
+    "build": "next build",
+    "start": "next start",
+    "clean:legacy": "node scripts/check-structure.mjs --fix",
+    "doctor": "node scripts/doctor.mjs"
+  },
+  "dependencies": {
+    "next": "^15.5.28",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "sass": "^1.89.0",
+    "lucide-react": "^0.468.0",
+    "@sanity/client": "^7.0.0",
+    "next-sanity": "^10.0.0",
+    "sanity": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
